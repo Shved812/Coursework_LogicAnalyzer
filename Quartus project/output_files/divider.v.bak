@@ -1,0 +1,16 @@
+module divider #(parameter N = 20)
+(
+    clk,
+    out
+);
+input wire clk;
+output wire out;
+assign out = rg[0];
+
+reg [N-1:0] rg = 0;
+always @(posedge clk)
+begin
+
+end
+
+endmodule

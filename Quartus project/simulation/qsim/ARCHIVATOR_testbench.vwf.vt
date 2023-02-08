@@ -1,0 +1,1017 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "11/25/2022 21:35:53"
+                                                                        
+// Verilog Self-Checking Test Bench (with test vectors) for design :    ARCHIVATOR_testbench
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module ARCHIVATOR_testbench_vlg_sample_tst(
+	bit_in,
+	clk,
+	clock2,
+	data2,
+	en,
+	nreset,
+	rdclk,
+	rdreq2,
+	read,
+	readclk,
+	sclr2,
+	wrreq1,
+	sampler_tx
+);
+input [15:0] bit_in;
+input  clk;
+input  clock2;
+input [7:0] data2;
+input  en;
+input  nreset;
+input  rdclk;
+input  rdreq2;
+input  read;
+input  readclk;
+input  sclr2;
+input  wrreq1;
+output sampler_tx;
+
+reg sample;
+time current_time;
+always @(bit_in or clk or clock2 or data2 or en or nreset or rdclk or rdreq2 or read or readclk or sclr2 or wrreq1)
+                                                                                
+begin                                                 
+ if ($realtime > 0)                                   
+ begin                                                
+	if ($realtime == 0 || $realtime != current_time)  
+	begin									          
+		if (sample === 1'bx)                          
+			sample = 0;                               
+		else                                          
+			sample = ~sample;                         
+	end										          
+	current_time = $realtime;					      
+ end                                                  
+end                                                   
+
+assign sampler_tx = sample;
+endmodule
+
+module ARCHIVATOR_testbench_vlg_check_tst (
+	byte_out,
+	cbuf_full,
+	CBUF_OVERFLOW,
+	empty2,
+	FIFO_EMPTY,
+	FIFO_FULL,
+	full2,
+	q2,
+	ready,
+	usedw2,
+	sampler_rx
+);
+input [7:0] byte_out;
+input  cbuf_full;
+input  CBUF_OVERFLOW;
+input  empty2;
+input  FIFO_EMPTY;
+input  FIFO_FULL;
+input  full2;
+input [7:0] q2;
+input  ready;
+input [2:0] usedw2;
+input sampler_rx;
+
+reg [7:0] byte_out_expected;
+reg  cbuf_full_expected;
+reg  CBUF_OVERFLOW_expected;
+reg  empty2_expected;
+reg  FIFO_EMPTY_expected;
+reg  FIFO_FULL_expected;
+reg  full2_expected;
+reg [7:0] q2_expected;
+reg  ready_expected;
+reg [2:0] usedw2_expected;
+
+reg [7:0] byte_out_prev;
+reg  cbuf_full_prev;
+reg  CBUF_OVERFLOW_prev;
+reg  empty2_prev;
+reg  FIFO_EMPTY_prev;
+reg  FIFO_FULL_prev;
+reg  full2_prev;
+reg [7:0] q2_prev;
+reg  ready_prev;
+reg [2:0] usedw2_prev;
+
+reg [7:0] byte_out_expected_prev;
+reg  cbuf_full_expected_prev;
+reg  CBUF_OVERFLOW_expected_prev;
+reg  empty2_expected_prev;
+reg  FIFO_EMPTY_expected_prev;
+reg  FIFO_FULL_expected_prev;
+reg  full2_expected_prev;
+reg [7:0] q2_expected_prev;
+reg  ready_expected_prev;
+reg [2:0] usedw2_expected_prev;
+
+reg [7:0] last_byte_out_exp;
+reg  last_cbuf_full_exp;
+reg  last_CBUF_OVERFLOW_exp;
+reg  last_empty2_exp;
+reg  last_FIFO_EMPTY_exp;
+reg  last_FIFO_FULL_exp;
+reg  last_full2_exp;
+reg [7:0] last_q2_exp;
+reg  last_ready_exp;
+reg [2:0] last_usedw2_exp;
+
+reg trigger;
+
+integer i;
+integer nummismatches;
+
+reg [1:10] on_first_change ;
+
+
+initial
+begin
+trigger = 0;
+i = 0;
+nummismatches = 0;
+on_first_change = 10'b1;
+end
+
+// update real /o prevs
+
+always @(trigger)
+begin
+	byte_out_prev = byte_out;
+	cbuf_full_prev = cbuf_full;
+	CBUF_OVERFLOW_prev = CBUF_OVERFLOW;
+	empty2_prev = empty2;
+	FIFO_EMPTY_prev = FIFO_EMPTY;
+	FIFO_FULL_prev = FIFO_FULL;
+	full2_prev = full2;
+	q2_prev = q2;
+	ready_prev = ready;
+	usedw2_prev = usedw2;
+end
+
+// update expected /o prevs
+
+always @(trigger)
+begin
+	byte_out_expected_prev = byte_out_expected;
+	cbuf_full_expected_prev = cbuf_full_expected;
+	CBUF_OVERFLOW_expected_prev = CBUF_OVERFLOW_expected;
+	empty2_expected_prev = empty2_expected;
+	FIFO_EMPTY_expected_prev = FIFO_EMPTY_expected;
+	FIFO_FULL_expected_prev = FIFO_FULL_expected;
+	full2_expected_prev = full2_expected;
+	q2_expected_prev = q2_expected;
+	ready_expected_prev = ready_expected;
+	usedw2_expected_prev = usedw2_expected;
+end
+
+
+// expected byte_out[ 7 ]
+initial
+begin
+	byte_out_expected[7] = 1'bX;
+end 
+// expected byte_out[ 6 ]
+initial
+begin
+	byte_out_expected[6] = 1'bX;
+end 
+// expected byte_out[ 5 ]
+initial
+begin
+	byte_out_expected[5] = 1'bX;
+end 
+// expected byte_out[ 4 ]
+initial
+begin
+	byte_out_expected[4] = 1'bX;
+end 
+// expected byte_out[ 3 ]
+initial
+begin
+	byte_out_expected[3] = 1'bX;
+end 
+// expected byte_out[ 2 ]
+initial
+begin
+	byte_out_expected[2] = 1'bX;
+end 
+// expected byte_out[ 1 ]
+initial
+begin
+	byte_out_expected[1] = 1'bX;
+end 
+// expected byte_out[ 0 ]
+initial
+begin
+	byte_out_expected[0] = 1'bX;
+end 
+
+// expected ready
+initial
+begin
+	ready_expected = 1'bX;
+end 
+
+// expected CBUF_OVERFLOW
+initial
+begin
+	CBUF_OVERFLOW_expected = 1'bX;
+end 
+
+// expected FIFO_EMPTY
+initial
+begin
+	FIFO_EMPTY_expected = 1'bX;
+end 
+
+// expected FIFO_FULL
+initial
+begin
+	FIFO_FULL_expected = 1'bX;
+end 
+
+// expected cbuf_full
+initial
+begin
+	cbuf_full_expected = 1'bX;
+end 
+
+// expected empty2
+initial
+begin
+	empty2_expected = 1'bX;
+end 
+
+// expected full2
+initial
+begin
+	full2_expected = 1'bX;
+end 
+// expected q2[ 7 ]
+initial
+begin
+	q2_expected[7] = 1'bX;
+end 
+// expected q2[ 6 ]
+initial
+begin
+	q2_expected[6] = 1'bX;
+end 
+// expected q2[ 5 ]
+initial
+begin
+	q2_expected[5] = 1'bX;
+end 
+// expected q2[ 4 ]
+initial
+begin
+	q2_expected[4] = 1'bX;
+end 
+// expected q2[ 3 ]
+initial
+begin
+	q2_expected[3] = 1'bX;
+end 
+// expected q2[ 2 ]
+initial
+begin
+	q2_expected[2] = 1'bX;
+end 
+// expected q2[ 1 ]
+initial
+begin
+	q2_expected[1] = 1'bX;
+end 
+// expected q2[ 0 ]
+initial
+begin
+	q2_expected[0] = 1'bX;
+end 
+// expected usedw2[ 2 ]
+initial
+begin
+	usedw2_expected[2] = 1'bX;
+end 
+// expected usedw2[ 1 ]
+initial
+begin
+	usedw2_expected[1] = 1'bX;
+end 
+// expected usedw2[ 0 ]
+initial
+begin
+	usedw2_expected[0] = 1'bX;
+end 
+// generate trigger
+always @(byte_out_expected or byte_out or cbuf_full_expected or cbuf_full or CBUF_OVERFLOW_expected or CBUF_OVERFLOW or empty2_expected or empty2 or FIFO_EMPTY_expected or FIFO_EMPTY or FIFO_FULL_expected or FIFO_FULL or full2_expected or full2 or q2_expected or q2 or ready_expected or ready or usedw2_expected or usedw2)
+begin
+	trigger <= ~trigger;
+end
+
+always @(posedge sampler_rx or negedge sampler_rx)
+begin
+`ifdef debug_tbench
+	$display("Scanning pattern %d @time = %t",i,$realtime );
+	i = i + 1;
+	$display("| expected byte_out = %b | expected cbuf_full = %b | expected CBUF_OVERFLOW = %b | expected empty2 = %b | expected FIFO_EMPTY = %b | expected FIFO_FULL = %b | expected full2 = %b | expected q2 = %b | expected ready = %b | expected usedw2 = %b | ",byte_out_expected_prev,cbuf_full_expected_prev,CBUF_OVERFLOW_expected_prev,empty2_expected_prev,FIFO_EMPTY_expected_prev,FIFO_FULL_expected_prev,full2_expected_prev,q2_expected_prev,ready_expected_prev,usedw2_expected_prev);
+	$display("| real byte_out = %b | real cbuf_full = %b | real CBUF_OVERFLOW = %b | real empty2 = %b | real FIFO_EMPTY = %b | real FIFO_FULL = %b | real full2 = %b | real q2 = %b | real ready = %b | real usedw2 = %b | ",byte_out_prev,cbuf_full_prev,CBUF_OVERFLOW_prev,empty2_prev,FIFO_EMPTY_prev,FIFO_FULL_prev,full2_prev,q2_prev,ready_prev,usedw2_prev);
+`endif
+	if (
+		( byte_out_expected_prev[0] !== 1'bx ) && ( byte_out_prev[0] !== byte_out_expected_prev[0] )
+		&& ((byte_out_expected_prev[0] !== last_byte_out_exp[0]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port byte_out[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", byte_out_expected_prev);
+		$display ("     Real value = %b", byte_out_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_byte_out_exp[0] = byte_out_expected_prev[0];
+	end
+	if (
+		( byte_out_expected_prev[1] !== 1'bx ) && ( byte_out_prev[1] !== byte_out_expected_prev[1] )
+		&& ((byte_out_expected_prev[1] !== last_byte_out_exp[1]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port byte_out[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", byte_out_expected_prev);
+		$display ("     Real value = %b", byte_out_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_byte_out_exp[1] = byte_out_expected_prev[1];
+	end
+	if (
+		( byte_out_expected_prev[2] !== 1'bx ) && ( byte_out_prev[2] !== byte_out_expected_prev[2] )
+		&& ((byte_out_expected_prev[2] !== last_byte_out_exp[2]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port byte_out[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", byte_out_expected_prev);
+		$display ("     Real value = %b", byte_out_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_byte_out_exp[2] = byte_out_expected_prev[2];
+	end
+	if (
+		( byte_out_expected_prev[3] !== 1'bx ) && ( byte_out_prev[3] !== byte_out_expected_prev[3] )
+		&& ((byte_out_expected_prev[3] !== last_byte_out_exp[3]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port byte_out[3] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", byte_out_expected_prev);
+		$display ("     Real value = %b", byte_out_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_byte_out_exp[3] = byte_out_expected_prev[3];
+	end
+	if (
+		( byte_out_expected_prev[4] !== 1'bx ) && ( byte_out_prev[4] !== byte_out_expected_prev[4] )
+		&& ((byte_out_expected_prev[4] !== last_byte_out_exp[4]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port byte_out[4] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", byte_out_expected_prev);
+		$display ("     Real value = %b", byte_out_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_byte_out_exp[4] = byte_out_expected_prev[4];
+	end
+	if (
+		( byte_out_expected_prev[5] !== 1'bx ) && ( byte_out_prev[5] !== byte_out_expected_prev[5] )
+		&& ((byte_out_expected_prev[5] !== last_byte_out_exp[5]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port byte_out[5] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", byte_out_expected_prev);
+		$display ("     Real value = %b", byte_out_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_byte_out_exp[5] = byte_out_expected_prev[5];
+	end
+	if (
+		( byte_out_expected_prev[6] !== 1'bx ) && ( byte_out_prev[6] !== byte_out_expected_prev[6] )
+		&& ((byte_out_expected_prev[6] !== last_byte_out_exp[6]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port byte_out[6] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", byte_out_expected_prev);
+		$display ("     Real value = %b", byte_out_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_byte_out_exp[6] = byte_out_expected_prev[6];
+	end
+	if (
+		( byte_out_expected_prev[7] !== 1'bx ) && ( byte_out_prev[7] !== byte_out_expected_prev[7] )
+		&& ((byte_out_expected_prev[7] !== last_byte_out_exp[7]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port byte_out[7] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", byte_out_expected_prev);
+		$display ("     Real value = %b", byte_out_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_byte_out_exp[7] = byte_out_expected_prev[7];
+	end
+	if (
+		( cbuf_full_expected_prev !== 1'bx ) && ( cbuf_full_prev !== cbuf_full_expected_prev )
+		&& ((cbuf_full_expected_prev !== last_cbuf_full_exp) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port cbuf_full :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", cbuf_full_expected_prev);
+		$display ("     Real value = %b", cbuf_full_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_cbuf_full_exp = cbuf_full_expected_prev;
+	end
+	if (
+		( CBUF_OVERFLOW_expected_prev !== 1'bx ) && ( CBUF_OVERFLOW_prev !== CBUF_OVERFLOW_expected_prev )
+		&& ((CBUF_OVERFLOW_expected_prev !== last_CBUF_OVERFLOW_exp) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port CBUF_OVERFLOW :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", CBUF_OVERFLOW_expected_prev);
+		$display ("     Real value = %b", CBUF_OVERFLOW_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_CBUF_OVERFLOW_exp = CBUF_OVERFLOW_expected_prev;
+	end
+	if (
+		( empty2_expected_prev !== 1'bx ) && ( empty2_prev !== empty2_expected_prev )
+		&& ((empty2_expected_prev !== last_empty2_exp) ||
+			on_first_change[4])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port empty2 :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", empty2_expected_prev);
+		$display ("     Real value = %b", empty2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[4] = 1'b0;
+		last_empty2_exp = empty2_expected_prev;
+	end
+	if (
+		( FIFO_EMPTY_expected_prev !== 1'bx ) && ( FIFO_EMPTY_prev !== FIFO_EMPTY_expected_prev )
+		&& ((FIFO_EMPTY_expected_prev !== last_FIFO_EMPTY_exp) ||
+			on_first_change[5])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port FIFO_EMPTY :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", FIFO_EMPTY_expected_prev);
+		$display ("     Real value = %b", FIFO_EMPTY_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[5] = 1'b0;
+		last_FIFO_EMPTY_exp = FIFO_EMPTY_expected_prev;
+	end
+	if (
+		( FIFO_FULL_expected_prev !== 1'bx ) && ( FIFO_FULL_prev !== FIFO_FULL_expected_prev )
+		&& ((FIFO_FULL_expected_prev !== last_FIFO_FULL_exp) ||
+			on_first_change[6])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port FIFO_FULL :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", FIFO_FULL_expected_prev);
+		$display ("     Real value = %b", FIFO_FULL_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[6] = 1'b0;
+		last_FIFO_FULL_exp = FIFO_FULL_expected_prev;
+	end
+	if (
+		( full2_expected_prev !== 1'bx ) && ( full2_prev !== full2_expected_prev )
+		&& ((full2_expected_prev !== last_full2_exp) ||
+			on_first_change[7])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port full2 :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", full2_expected_prev);
+		$display ("     Real value = %b", full2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[7] = 1'b0;
+		last_full2_exp = full2_expected_prev;
+	end
+	if (
+		( q2_expected_prev[0] !== 1'bx ) && ( q2_prev[0] !== q2_expected_prev[0] )
+		&& ((q2_expected_prev[0] !== last_q2_exp[0]) ||
+			on_first_change[8])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q2[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q2_expected_prev);
+		$display ("     Real value = %b", q2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[8] = 1'b0;
+		last_q2_exp[0] = q2_expected_prev[0];
+	end
+	if (
+		( q2_expected_prev[1] !== 1'bx ) && ( q2_prev[1] !== q2_expected_prev[1] )
+		&& ((q2_expected_prev[1] !== last_q2_exp[1]) ||
+			on_first_change[8])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q2[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q2_expected_prev);
+		$display ("     Real value = %b", q2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[8] = 1'b0;
+		last_q2_exp[1] = q2_expected_prev[1];
+	end
+	if (
+		( q2_expected_prev[2] !== 1'bx ) && ( q2_prev[2] !== q2_expected_prev[2] )
+		&& ((q2_expected_prev[2] !== last_q2_exp[2]) ||
+			on_first_change[8])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q2[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q2_expected_prev);
+		$display ("     Real value = %b", q2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[8] = 1'b0;
+		last_q2_exp[2] = q2_expected_prev[2];
+	end
+	if (
+		( q2_expected_prev[3] !== 1'bx ) && ( q2_prev[3] !== q2_expected_prev[3] )
+		&& ((q2_expected_prev[3] !== last_q2_exp[3]) ||
+			on_first_change[8])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q2[3] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q2_expected_prev);
+		$display ("     Real value = %b", q2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[8] = 1'b0;
+		last_q2_exp[3] = q2_expected_prev[3];
+	end
+	if (
+		( q2_expected_prev[4] !== 1'bx ) && ( q2_prev[4] !== q2_expected_prev[4] )
+		&& ((q2_expected_prev[4] !== last_q2_exp[4]) ||
+			on_first_change[8])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q2[4] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q2_expected_prev);
+		$display ("     Real value = %b", q2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[8] = 1'b0;
+		last_q2_exp[4] = q2_expected_prev[4];
+	end
+	if (
+		( q2_expected_prev[5] !== 1'bx ) && ( q2_prev[5] !== q2_expected_prev[5] )
+		&& ((q2_expected_prev[5] !== last_q2_exp[5]) ||
+			on_first_change[8])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q2[5] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q2_expected_prev);
+		$display ("     Real value = %b", q2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[8] = 1'b0;
+		last_q2_exp[5] = q2_expected_prev[5];
+	end
+	if (
+		( q2_expected_prev[6] !== 1'bx ) && ( q2_prev[6] !== q2_expected_prev[6] )
+		&& ((q2_expected_prev[6] !== last_q2_exp[6]) ||
+			on_first_change[8])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q2[6] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q2_expected_prev);
+		$display ("     Real value = %b", q2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[8] = 1'b0;
+		last_q2_exp[6] = q2_expected_prev[6];
+	end
+	if (
+		( q2_expected_prev[7] !== 1'bx ) && ( q2_prev[7] !== q2_expected_prev[7] )
+		&& ((q2_expected_prev[7] !== last_q2_exp[7]) ||
+			on_first_change[8])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q2[7] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q2_expected_prev);
+		$display ("     Real value = %b", q2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[8] = 1'b0;
+		last_q2_exp[7] = q2_expected_prev[7];
+	end
+	if (
+		( ready_expected_prev !== 1'bx ) && ( ready_prev !== ready_expected_prev )
+		&& ((ready_expected_prev !== last_ready_exp) ||
+			on_first_change[9])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port ready :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", ready_expected_prev);
+		$display ("     Real value = %b", ready_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[9] = 1'b0;
+		last_ready_exp = ready_expected_prev;
+	end
+	if (
+		( usedw2_expected_prev[0] !== 1'bx ) && ( usedw2_prev[0] !== usedw2_expected_prev[0] )
+		&& ((usedw2_expected_prev[0] !== last_usedw2_exp[0]) ||
+			on_first_change[10])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port usedw2[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", usedw2_expected_prev);
+		$display ("     Real value = %b", usedw2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[10] = 1'b0;
+		last_usedw2_exp[0] = usedw2_expected_prev[0];
+	end
+	if (
+		( usedw2_expected_prev[1] !== 1'bx ) && ( usedw2_prev[1] !== usedw2_expected_prev[1] )
+		&& ((usedw2_expected_prev[1] !== last_usedw2_exp[1]) ||
+			on_first_change[10])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port usedw2[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", usedw2_expected_prev);
+		$display ("     Real value = %b", usedw2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[10] = 1'b0;
+		last_usedw2_exp[1] = usedw2_expected_prev[1];
+	end
+	if (
+		( usedw2_expected_prev[2] !== 1'bx ) && ( usedw2_prev[2] !== usedw2_expected_prev[2] )
+		&& ((usedw2_expected_prev[2] !== last_usedw2_exp[2]) ||
+			on_first_change[10])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port usedw2[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", usedw2_expected_prev);
+		$display ("     Real value = %b", usedw2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[10] = 1'b0;
+		last_usedw2_exp[2] = usedw2_expected_prev[2];
+	end
+
+	trigger <= ~trigger;
+end
+initial 
+
+begin 
+$timeformat(-12,3," ps",6);
+#1000000;
+if (nummismatches > 0)
+	$display ("%d mismatched vectors : Simulation failed !",nummismatches);
+else
+	$display ("Simulation passed !");
+$finish;
+end 
+endmodule
+
+module ARCHIVATOR_testbench_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg [15:0] bit_in;
+reg clk;
+reg clock2;
+reg [7:0] data2;
+reg en;
+reg nreset;
+reg rdclk;
+reg rdreq2;
+reg read;
+reg readclk;
+reg sclr2;
+reg wrreq1;
+// wires                                               
+wire [7:0] byte_out;
+wire cbuf_full;
+wire CBUF_OVERFLOW;
+wire empty2;
+wire FIFO_EMPTY;
+wire FIFO_FULL;
+wire full2;
+wire [7:0] q2;
+wire ready;
+wire [2:0] usedw2;
+
+wire sampler;                             
+
+// assign statements (if any)                          
+ARCHIVATOR_testbench i1 (
+// port map - connection between master ports and signals/registers   
+	.bit_in(bit_in),
+	.byte_out(byte_out),
+	.cbuf_full(cbuf_full),
+	.CBUF_OVERFLOW(CBUF_OVERFLOW),
+	.clk(clk),
+	.clock2(clock2),
+	.data2(data2),
+	.empty2(empty2),
+	.en(en),
+	.FIFO_EMPTY(FIFO_EMPTY),
+	.FIFO_FULL(FIFO_FULL),
+	.full2(full2),
+	.nreset(nreset),
+	.q2(q2),
+	.rdclk(rdclk),
+	.rdreq2(rdreq2),
+	.read(read),
+	.readclk(readclk),
+	.ready(ready),
+	.sclr2(sclr2),
+	.usedw2(usedw2),
+	.wrreq1(wrreq1)
+);
+
+// nreset
+initial
+begin
+	nreset = 1'b0;
+	nreset = #20000 1'b1;
+end 
+
+// en
+initial
+begin
+	en = 1'b0;
+	en = #20000 1'b1;
+end 
+
+// clk
+initial
+begin
+	clk = 1'b0;
+end 
+
+// read
+initial
+begin
+	read = 1'b1;
+end 
+
+// rdclk
+always
+begin
+	rdclk = 1'b0;
+	rdclk = #500 1'b1;
+	#500;
+end 
+
+// readclk
+initial
+begin
+	readclk = 1'b0;
+	readclk = #37500 1'b1;
+	# 12500;
+	repeat(38)
+	begin
+		readclk = 1'b0;
+		readclk = #12500 1'b1;
+		# 12500;
+	end
+end 
+// bit_in[ 15 ]
+initial
+begin
+	bit_in[15] = 1'b0;
+end 
+// bit_in[ 14 ]
+initial
+begin
+	bit_in[14] = 1'b0;
+end 
+// bit_in[ 13 ]
+initial
+begin
+	bit_in[13] = 1'b0;
+end 
+// bit_in[ 12 ]
+initial
+begin
+	bit_in[12] = 1'b0;
+end 
+// bit_in[ 11 ]
+initial
+begin
+	bit_in[11] = 1'b0;
+end 
+// bit_in[ 10 ]
+initial
+begin
+	bit_in[10] = 1'b0;
+end 
+// bit_in[ 9 ]
+initial
+begin
+	bit_in[9] = 1'b0;
+end 
+// bit_in[ 8 ]
+initial
+begin
+	bit_in[8] = 1'b0;
+end 
+// bit_in[ 7 ]
+initial
+begin
+	bit_in[7] = 1'b0;
+end 
+// bit_in[ 6 ]
+initial
+begin
+	bit_in[6] = 1'b0;
+end 
+// bit_in[ 5 ]
+initial
+begin
+	bit_in[5] = 1'b0;
+end 
+// bit_in[ 4 ]
+initial
+begin
+	bit_in[4] = 1'b0;
+end 
+// bit_in[ 3 ]
+initial
+begin
+	bit_in[3] = 1'b0;
+end 
+// bit_in[ 2 ]
+initial
+begin
+	bit_in[2] = 1'b0;
+end 
+// bit_in[ 1 ]
+initial
+begin
+	bit_in[1] = 1'b0;
+end 
+// bit_in[ 0 ]
+initial
+begin
+	bit_in[0] = 1'b0;
+end 
+
+// clock2
+always
+begin
+	clock2 = 1'b0;
+	clock2 = #10000 1'b1;
+	#10000;
+end 
+// data2[ 7 ]
+initial
+begin
+	data2[7] = 1'b0;
+end 
+// data2[ 6 ]
+initial
+begin
+	data2[6] = 1'b0;
+end 
+// data2[ 5 ]
+initial
+begin
+	data2[5] = 1'b0;
+end 
+// data2[ 4 ]
+initial
+begin
+	data2[4] = 1'b0;
+end 
+// data2[ 3 ]
+initial
+begin
+	repeat(3)
+	begin
+		data2[3] = 1'b0;
+		data2[3] = #160000 1'b1;
+		# 160000;
+	end
+	data2[3] = 1'b0;
+end 
+// data2[ 2 ]
+initial
+begin
+	repeat(6)
+	begin
+		data2[2] = 1'b0;
+		data2[2] = #80000 1'b1;
+		# 80000;
+	end
+	data2[2] = 1'b0;
+end 
+// data2[ 1 ]
+initial
+begin
+	repeat(12)
+	begin
+		data2[1] = 1'b0;
+		data2[1] = #40000 1'b1;
+		# 40000;
+	end
+	data2[1] = 1'b0;
+end 
+// data2[ 0 ]
+always
+begin
+	data2[0] = 1'b0;
+	data2[0] = #20000 1'b1;
+	#20000;
+end 
+
+// wrreq1
+initial
+begin
+	repeat(8)
+	begin
+		wrreq1 = 1'b0;
+		wrreq1 = #20000 1'b1;
+		# 20000;
+	end
+	wrreq1 = 1'b0;
+end 
+
+// rdreq2
+initial
+begin
+	rdreq2 = 1'b0;
+	rdreq2 = #370000 1'b1;
+	# 20000;
+	repeat(14)
+	begin
+		rdreq2 = 1'b0;
+		rdreq2 = #20000 1'b1;
+		# 20000;
+	end
+	rdreq2 = 1'b0;
+end 
+
+// sclr2
+initial
+begin
+	sclr2 = 1'b0;
+end 
+
+ARCHIVATOR_testbench_vlg_sample_tst tb_sample (
+	.bit_in(bit_in),
+	.clk(clk),
+	.clock2(clock2),
+	.data2(data2),
+	.en(en),
+	.nreset(nreset),
+	.rdclk(rdclk),
+	.rdreq2(rdreq2),
+	.read(read),
+	.readclk(readclk),
+	.sclr2(sclr2),
+	.wrreq1(wrreq1),
+	.sampler_tx(sampler)
+);
+
+ARCHIVATOR_testbench_vlg_check_tst tb_out(
+	.byte_out(byte_out),
+	.cbuf_full(cbuf_full),
+	.CBUF_OVERFLOW(CBUF_OVERFLOW),
+	.empty2(empty2),
+	.FIFO_EMPTY(FIFO_EMPTY),
+	.FIFO_FULL(FIFO_FULL),
+	.full2(full2),
+	.q2(q2),
+	.ready(ready),
+	.usedw2(usedw2),
+	.sampler_rx(sampler)
+);
+endmodule
+

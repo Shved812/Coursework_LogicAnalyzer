@@ -1,0 +1,38 @@
+module EDGE_CODER #(parameter N = 16)
+(
+    nreset,
+    en,
+    clk,
+    bit_in,
+    bit_out
+);
+    input wire nreset;
+    input wire en;
+    input wire clk;
+    input wire [N-1:0] bit_in;
+    output wire [N-1:0] bit_out;
+
+    register # ( .SIZE(N)) reg_1 (
+        .q( q_1),
+        .d( bit_in),
+        .en( en),
+        .nreset( nreset),
+        .prn( 1),
+        .clk( clk)
+    );
+    
+    wire [N-1:0] q_1,  q_2;
+    
+    register # ( .SIZE(N)) reg_2 (
+        .q( q_2),
+        .d( q_1),
+        .en( en),
+        .nreset( nreset),
+        .prn( 1),
+        .clk( clk)
+    );
+     
+    assign bit_out = q_1 ^ q_2;
+    
+    
+endmodule

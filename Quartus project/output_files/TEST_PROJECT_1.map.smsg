@@ -1,0 +1,6 @@
+Warning (10268): Verilog HDL information at RLE_CODER_CODER.v(126): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at CBUF.v(48): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at CBUF.v(101): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at CBUF.v(142): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at modulator.v(17): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at modulator.v(14): object "T" differs only in case from object "t" in the same scope

@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="TEST_PROJECT_1">
+		<CBX_INST_ENTRY INSTANCE_NAME="|TEST_PROJECT_1|ARCHIVATOR:inst18|FIFO_ARCHIVATOR_2:inst10|scfifo:scfifo_component" CBX_FILE_NAME="scfifo_7641.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|TEST_PROJECT_1|PLL_50MHz:inst2|altpll:altpll_component" CBX_FILE_NAME="PLL_50MHz_altpll.v"/>
+	</PROJECT>
+</LOG_ROOT>

@@ -1,0 +1,11 @@
+module valider (
+    nreset,
+    en,
+    rdclk,
+    byte,
+    ready,
+    switch
+);
+
+
+endmodule

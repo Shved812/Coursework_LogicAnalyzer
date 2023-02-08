@@ -1,0 +1,25 @@
+module counter_locked #(parameter delay = 5, vol = 3)
+(
+    input wire rdclk,
+    input wire nreset,
+    input wire en,
+    input wire clk,
+    output wire clk_out
+);
+
+reg [vol-1:0]cnt = 0;
+always @(posedge rdclk)
+begin
+    if(!nreset)begin
+        cnt <= 0;
+    end else begin
+        if(en)begin
+            if(clk && cnt < delay)
+                cnt <= cnt + 1;
+        end
+    end
+end
+
+assign clk_out = (cnt == delay);
+
+endmodule

@@ -1,0 +1,16 @@
+Fitter Status : Successful - Wed Nov 30 00:41:17 2022
+Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Web Edition
+Revision Name : TEST_PROJECT_1
+Top-level Entity Name : TEST_PROJECT_1
+Family : Cyclone IV E
+Device : EP4CE6E22C8
+Timing Models : Final
+Total logic elements : 2,785 / 6,272 ( 44 % )
+    Total combinational functions : 2,604 / 6,272 ( 42 % )
+    Dedicated logic registers : 1,466 / 6,272 ( 23 % )
+Total registers : 1466
+Total pins : 28 / 92 ( 30 % )
+Total virtual pins : 0
+Total memory bits : 131,072 / 276,480 ( 47 % )
+Embedded Multiplier 9-bit elements : 0 / 30 ( 0 % )
+Total PLLs : 1 / 2 ( 50 % )

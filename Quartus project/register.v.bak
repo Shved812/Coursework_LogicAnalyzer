@@ -1,0 +1,31 @@
+module register #(parameter SIZE = 8)
+(
+    q,
+    d,
+    en,
+    nreset,
+    prn,
+    clk,
+);
+output reg [SIZE-1:0] q = 0;
+input wire [SIZE-1:0] d;
+
+input wire en;
+input wire nreset;
+input wire prn;
+input wire clk;
+
+always @(posedge clk)
+begin
+    if(en)
+        if(!nreset)
+            q <= 0;
+        else
+            if(!prn)
+                q <= ~0;
+            else
+                q <= d;
+end
+
+
+endmodule

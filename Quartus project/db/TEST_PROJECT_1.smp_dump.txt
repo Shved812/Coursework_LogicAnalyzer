@@ -1,0 +1,6 @@
+
+State Machine - |TEST_PROJECT_1|usart:inst_usart|usart_tx:USART_tx_1|cnt_delay
+Name cnt_delay.01 cnt_delay.11 cnt_delay.00 
+cnt_delay.01 0 0 0 
+cnt_delay.00 1 0 1 
+cnt_delay.11 1 1 0 

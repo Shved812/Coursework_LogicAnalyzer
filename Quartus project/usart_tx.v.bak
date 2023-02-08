@@ -1,0 +1,73 @@
+//Между концом передачи и готовностью отослать следующий байт существует задержка в 1 такт rdclk
+module usart_tx(
+
+	nreset,			// сигнал сброса (асинхронный, активный уровень 0)
+	clk,				// тактовая частота UART, д.б. в четыре раза больше скорости обмена по UART
+	rdclk,			// тактирование подтверждения приема данных от поставщика
+	txdata,			// шина данных на передачу от поставщика
+	write,			// признак наличия данных на передачу (активный уровень 1)
+	idle,				// индикатор не активного передатчика (активный уровень 1)
+	fetch,			// подтверждение загрузки данных от поставщика, тактируется rdclk
+	tx					// выходная линия UART
+);
+
+input wire nreset;		// сигнал сброса (асинхронный, активный уровень 0)
+input wire clk;			// тактирование UART
+input wire rdclk;
+input wire[7:0] txdata;
+input wire write;
+output idle;
+output fetch;
+output tx;
+
+reg idle = 1'b1;					//procces bit (1 when usart_tx is busy)
+reg fetch = 1'b0;					//fetch bit (1 when usart_tx ready get new data)
+reg tx = 1'b1;						//output tx bit
+reg [1:0]div4 = 2'b0;			//4 divider
+reg [7:0]byte = 8'b0;			//data_buf
+reg [3:0]bit_cnt = 4'b0;		//count sended bit
+reg [2:0]send_pos = 1'b0;		//pos of sending bit in data_buf
+
+always @(posedge clk)
+begin
+	if((!nreset) || (!fetch)) begin								//reset state
+		div4 <= 2'b0;
+		bit_cnt <= 4'b0;
+		send_pos <= 0;
+		tx <= 1'b1;
+	end
+	else if(bit_cnt == 4'd0) begin								//send start-bit
+		tx <= 1'b0;			
+		{bit_cnt, div4} <= {bit_cnt, div4} + 2'b1;
+	end
+	else if((bit_cnt > 4'd0) && (bit_cnt < 4'd10)) begin	//send byte by bit (LSB)
+		tx <= (byte>>send_pos);
+		{bit_cnt, div4} <= {bit_cnt, div4} + 2'b1;
+		{send_pos, div4} <= {send_pos, div4} + 2'b1;
+	end
+	else if(bit_cnt == 4'd10) begin								//send stop-bit
+		tx <= 1'b1;
+		{bit_cnt, div4} <= {bit_cnt, div4} + 2'b1;
+	end
+end
+
+always @(posedge rdclk)
+begin
+	if(write) begin								//stay progress
+		idle <= 1'b0;
+		fetch <= 1'b1;
+		byte <= txdata;							//get data in data_buf
+	end
+	else if(bit_cnt > 4'd10) begin			//stay sended
+		idle <= 1'b0;
+		fetch <= 1'b0;
+		//byte <= 8'b0;								//clear data_buf (not needed)
+	end
+	else if((!idle) && (!fetch)) begin		//stay reset (ready)
+		idle <= 1'b1;
+		fetch <= 1'b0;
+	end
+end
+
+
+endmodule

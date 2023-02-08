@@ -1,0 +1,16 @@
+module sender_counter (
+    nreset,
+    en,
+    rdclk,
+    ready_in,
+    word_out,
+    ready
+);
+input wire nreset;
+input wire en;
+input wire rdclk;
+input wire ready_in;
+output reg [15:0] word_out;
+output reg ready;
+
+endmodule
