@@ -14,9 +14,8 @@ In this project were implemented:
 </ul>
 
 Computer application for:
-
-*Working with a COM port
-
-*Decoding data
-
-*Build of time diagrams
+<ul>
+  <li>Working with a COM port</li>
+  <li>Decoding data</li>
+  <li>Build of time diagrams</li>
+</ul>
