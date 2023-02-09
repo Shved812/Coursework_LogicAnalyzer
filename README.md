@@ -5,18 +5,15 @@ The read signals are compressed (encrypted) and sent via UART to the PC.
 Where they are then read and decoded by a specially written QT C++ application that outputs signal graphs.
 
 In this project were implemented:
+<ul>
+  <li>UART transmitter</li>
+  <li>Data Compression module</li>
+  <li>FIFO bufer</li>
+  <li>PLL clocking</li>
+  <li>Logical control scheme</li>
+</ul>
 
-*UART transmitter
-
-*Data Compression module
-
-*FIFO bufer
-
-*PLL clocking
-
-Logical control scheme
-
-*Computer application for:
+Computer application for:
 
 *Working with a COM port
 
